@@ -1,0 +1,68 @@
+/* Colores italianos */
+:root {
+  --italy-green: #2e7d32;
+  --italy-red: #c62828;
+  --italy-white: #ffffff;
+  --hero-overlay: rgba(0, 0, 0, 0.35);
+}
+
+/* Tipografía italiana */
+.italian-title {
+  font-family: "Georgia", serif;
+  letter-spacing: 0.5px;
+}
+
+/* Hero italiano */
+.hero-italy {
+  background: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
+    url("https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&w=800")
+      center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 6px solid var(--italy-red);
+}
+
+.btn-italy {
+  background-color: var(--italy-green);
+  color: var(--italy-white);
+}
+
+.btn-italy:hover {
+  background-color: #1b5e20;
+}
+
+/* Cards */
+.recipe-card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+.recipe-card img {
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Navbar italiano */
+.navbar {
+  border-bottom: 4px solid var(--italy-green);
+}
+
+.nav-link.active {
+  color: var(--italy-green) !important;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero-italy {
+    text-align: center;
+  }
+}
