@@ -1,41 +1,98 @@
-# Gourmet Go - Buscador de Recetas Italianas (Sprint 1)
+# Gourmet Go – Buscador de Recetas (Sprint 2)
 
-Proyecto desarrollado como parte del **EF-M3 Proyecto Integrador - Sprint 1**.  
-El objetivo de este sprint es construir un **prototipo visual de alta fidelidad** para un buscador de recetas, enfocado en **recetas italianas**, utilizando **Bootstrap 5** y una maquetación completamente responsiva.
+Proyecto desarrollado como parte del **EF-M4 Proyecto Integrador – Sprint 2**.  
+En este sprint, el prototipo visual del Sprint 1 evoluciona a una **aplicación web funcional**, conectada a una **API real de recetas**.
 
-## 🎯 Objetivo del Sprint 1
+El proyecto permite a los usuarios **buscar recetas por ingrediente**, gestionando las búsquedas de forma **asíncrona**, sin recargar la página, y mostrando los resultados dinámicamente en pantalla.
 
-Entregar una **única página estática** que muestre:
+## 🎯 Objetivo del Sprint 2
 
-- Un encabezado claro y un **formulario de búsqueda** prominente.
-- Una **galería de recetas de ejemplo** utilizando cards de Bootstrap.
-- Un diseño **responsivo**, adaptado tanto a escritorio como a dispositivos móviles.
+Transformar la maqueta estática del Sprint 1 en un **producto mínimo viable (MVP)** que:
 
-Este sprint está centrado en el **diseño visual y la maquetación**, no en la lógica funcional del buscador.
+- Se conecte a una **API externa de recetas (TheMealDB)**.
+- Permita realizar **búsquedas reales por ingrediente**.
+- Renderice los resultados dinámicamente en la interfaz.
+- Gestione correctamente los casos donde no existen resultados.
 
-## 🧩 Historias de Usuario Cubiertas
+## 🧩 Historias de Usuario Implementadas
 
-### HU-01: Interfaz Principal de Búsqueda
+### HU-04: Búsqueda Funcional de Recetas
 
-- Título principal: **"Buscador de Recetas Italianas"**.
-- Formulario con:
-  - `<input>` de texto con placeholder descriptivo.
-  - `<button>` con texto claro **"Buscar"**.
-- Todos los elementos utilizan clases de **Bootstrap 5** para formulario y botones.
+Como usuario,  
+quiero escribir un ingrediente y presionar **Buscar**,  
+para obtener una lista de recetas que contengan dicho ingrediente.
 
-### HU-02: Visualización de Recetas de Ejemplo
+**Implementación:**
 
-- Sección de resultados debajo del buscador: **"Recetas Clásicas Italianas"**.
-- 6 tarjetas de recetas **hard-codeadas** en `index.html`.
-- Cada tarjeta usa el componente **`card` de Bootstrap** e incluye:
-  - Imagen (`<img class="card-img-top">`).
-  - Título (`<h5 class="card-title">`).
-  - Botón de acción (`<a href="#" class="btn btn-italy">Ver receta</a>`).
+- El formulario utiliza el evento `submit` con `preventDefault()` para evitar la recarga de la página.
+- Se captura el texto ingresado por el usuario desde el input.
+- Se realiza una llamada asíncrona a la API **TheMealDB** usando el endpoint:
 
-### HU-03: Experiencia en Dispositivos Móviles
+https://www.themealdb.com/api/json/v1/1/filter.php?i=[ingrediente]
 
-- Diseño completamente **responsivo** utilizando el sistema de grillas de Bootstrap:
-  - `col-12` en móviles (1 columna).
-  - `col-md-6` en pantallas medianas (2 columnas).
-  - `col-lg-4` en escritorio (3 columnas).
-- Se ajusta el diseño del hero para mejorar la lectura en pantallas pequeñas.
+- La comunicación con la API se realiza mediante **fetch** y **async/await**.
+
+### HU-05: Renderizado Dinámico de Resultados
+
+Como usuario,  
+quiero que los resultados aparezcan sin recargar la página,  
+para tener una experiencia fluida.
+
+**Implementación:**
+
+- Las tarjetas de recetas hard-codeadas del Sprint 1 fueron eliminadas.
+- El contenedor de resultados se encuentra vacío por defecto.
+- Por cada receta devuelta por la API:
+- Se genera dinámicamente una tarjeta HTML.
+- Se utilizan **template literals de ES6+**.
+- Los datos se extraen mediante **desestructuración**.
+- Antes de mostrar nuevos resultados, se eliminan los anteriores.
+
+### HU-06: Manejo de Búsquedas sin Resultados
+
+Como usuario,  
+quiero recibir un mensaje claro cuando no existan recetas,  
+para saber que debo intentar con otro ingrediente.
+
+**Implementación:**
+
+- Si la API retorna `meals === null`, se muestra un mensaje informativo:
+  > “Lo sentimos, no se encontraron recetas. Intenta con otro ingrediente.”
+
+## 🌍 Soporte para Ingredientes en Español
+
+Dado que la API TheMealDB trabaja principalmente con ingredientes en inglés, el proyecto incorpora:
+
+- Un **diccionario de traducción Español → Inglés** en el frontend.
+- Normalización de texto (minúsculas y eliminación de tildes).
+- El usuario puede escribir ingredientes en español como:
+- `pollo`, `arroz`, `queso`, `cebolla`
+- Internamente, estos se traducen a los valores que reconoce la API:
+- `chicken`, `rice`, `cheese`, `onion`
+
+Esto mejora la experiencia del usuario sin necesidad de un backend.
+
+## 🛠️ Tecnologías Utilizadas
+
+- **HTML5**
+- **CSS3**
+- **Bootstrap 5**
+- **JavaScript ES6+**
+- `const` / `let`
+- Arrow functions
+- Template literals
+- Desestructuración
+- **Fetch API**
+- **Async / Await**
+- **Programación Orientada a Objetos (POO)**
+
+Todo el código JavaScript se encuentra centralizado en el archivo `main.js`, tal como lo exige el enunciado del Sprint 2.
+
+## ✅ Estado del Proyecto
+
+✔ Sprint 2 completado  
+✔ Funcionalidad conectada a API  
+✔ Renderizado dinámico  
+✔ Manejo de errores y búsquedas sin resultados
+
+El proyecto se encuentra **completamente funcional y listo para evaluación**.
