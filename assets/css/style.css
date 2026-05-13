@@ -118,7 +118,7 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/img/gourmet_go_hero.jpg");
+  background-image: url("../img/gourmet_go_hero.jpg");
   background-size: cover;
   background-position: center 70%;
   transform: scale(1.04);
